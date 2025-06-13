@@ -1,0 +1,22 @@
+<section class="seccion">
+    <div class="container seccion-container">
+        <div class="seccion-content">
+            <h1 class="seccion-title">Cuenta Administrativa</h1>
+        </div>
+    </div>
+</section>
+
+<div class="formulario">
+    <form [formGroup]="Formlogin">
+        <p class="cuenta">Cuenta Administrativa</p>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Correo</label>
+            <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contrasena</label>
+            <input formControlName="contrasena" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button (click)="login()" type="submit" class="btn">Enviar</button>
+    </form>
+</div>

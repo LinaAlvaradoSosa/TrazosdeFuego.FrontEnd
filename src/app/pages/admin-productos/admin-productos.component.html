@@ -1,0 +1,63 @@
+<section class="seccion">
+    <div class="container seccion-container">
+        <div class="seccion-content">
+            <h1 class="seccion-title">Administración Productos</h1>
+        </div>
+    </div>
+</section>
+
+<div class="contenedor">     
+    <div class="buscador-container">
+        <input type="text" class="input-busqueda" placeholder="Buscar productos..." />
+    </div>
+    <table>
+        <thead>
+            <tr >
+                <th class="text-center align-middle">Nombre del Producto</th>
+                <th class="text-center align-middle">Imagen</th>
+                <th class="text-center align-middle">Tipo</th>
+                <th class="text-center align-middle">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let producto of productos">
+                <td>{{producto.nombre}}</td>
+                <td>
+                    <img class="imagen" width="80"  [src]="obtenerUrlCloudinary(producto.imagen)" alt="{{producto.nombre}}"/>
+                </td>
+                <td>{{producto.tipo}}</td>
+                <td>
+                    <button (click)="deleteProduct(producto._id)" class="btn-borrar" type="button">Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary agregarProducto" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar un producto</button>
+</div>
+
+<button routerLink="/principalAdmi"  class="volverTrucu" style="padding: 10px 20px; background-color: #919191; color: black; border: none; border-radius: 5px;">
+    ← Admi.PinceldeFuego
+</button>
+
+
+<!-- moda agregar -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar un producto</h1>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="crear()" enctype="multipart/form-data"  aria-hidden="false">
+                    <input  #myInput type="text" [(ngModel)]="producto.nombre" name="nombre" placeholder="Nombre" required />
+                    <input  #myInput type="text" [(ngModel)]="producto.tipo" name="tipo" placeholder="tipos" required />
+                    <p class="tipo">accesorios,artilleria,aviacion,caballeria,comunicaciones,esculturas-militares,espro,infantería,ingenieros,inteligencia,logistica</p>
+                    <input  #myInput type="file" (change)="onFileChange($event)" />
+                    <button type="submit"  data-bs-dismiss="modal" >Crear producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+

@@ -1,0 +1,127 @@
+/* Footer */
+footer {
+    width: 100%;
+    padding: 1.5rem 0;
+    background-color: #bfcfe0;
+    border-top: 1px solid var(--color-gray-300);
+}
+.logo-img {
+    width: 80%;
+    margin-top: 10%;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.footer-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.footer-text {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.footer-link {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    transition: color 0.3s;
+}
+.footer-link:hover {
+    color: var(--color-secondary);
+}
+.redes{
+    width: 30px;
+    margin-right: 5%;
+}
+.footer-bottom {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-gray-300);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+
+  /* Media Queries */
+@media (min-width: 640px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .hero {
+        padding: 6rem 0;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .section-description {
+        font-size: 1.125rem;
+    }
+
+    .about-title {
+        font-size: 2.25rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu-button {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .category .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

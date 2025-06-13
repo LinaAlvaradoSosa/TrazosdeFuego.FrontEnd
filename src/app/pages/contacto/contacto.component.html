@@ -1,0 +1,82 @@
+<section class="seccion">
+    <div class="container seccion-container">
+        <div class="seccion-content">
+            <h1 class="seccion-title">Contáctame</h1>
+        </div>
+    </div>
+</section>
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+        <!-- Contact Information -->
+            <div class="contact-info">
+                <div>
+                    <h2 class="section-title">Información de Contacto</h2>
+                    <p class="section-description">No dude en ponerse en contacto con nosotros utilizando cualquiera de los siguientes métodos:</p>
+                </div>
+
+            <div class="contact-items">
+                <div class="contact-item">
+                <div class="contact-icon address">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-content">
+                    <h3>Dirección</h3>
+                    <p>Paipa,Boyacá,Colombia. Cl. 24 #18-11</p>
+                </div>
+                </div>
+
+                <div class="contact-item">
+                <div class="contact-icon phone">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-content">
+                    <h3>Celular</h3>
+                    <p>+57 311 208 26 26</p>
+                </div>
+                </div>
+
+                <div class="contact-item">
+                <div class="contact-icon email">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-content">
+                    <h3>Email</h3>
+                    <p>infotrazosdefuego.com</p>
+                </div>
+                </div>
+
+                <div class="contact-item">
+                <div class="contact-icon hours">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-content">
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Sábado: 8:00 AM - 8:00 PM</p>
+                    <p>Domingo: Cerrado</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    <h2 class="section-title">Déjame un mensaje, responderé lo más rápido</h2>
+<div>
+    <form class="formulario-contacto" [formGroup]="formularioContacto">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" formControlName="nombre" />
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input id="correo" type="email" formControlName="correo" />
+        </div>
+        <div class="form-group">
+            <label for="celular">Celular</label>
+            <input id="celular" type="tel" formControlName="celular" />
+        </div>
+        <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" formControlName="mensaje" rows="4"></textarea>
+        </div>
+        <button (click)="sendMessage()" class="enviar" type="submit">Enviar mensaje</button>
+    </form>
+</div>
