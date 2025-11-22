@@ -7,6 +7,7 @@ import { AdmiComponent } from './pages/admi/admi.component';
 import { AdminContactosComponent } from './pages/admin-contactos/admin-contactos.component';
 import { PrincipalAdmiComponent } from './pages/principal-admi/principal-admi.component';
 import { AdminProductosComponent } from './pages/admin-productos/admin-productos.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -15,8 +16,26 @@ export const routes: Routes = [
     {path: "sobre-nosotros", component: SobreNosotrsComponent},
     {path: "contacto", component:ContactoComponent},
     {path: "admi-trazosdeFuego", component: AdmiComponent},
-    {path: "admi-contactos", component: AdminContactosComponent},
-    {path: "principalAdmi", component: PrincipalAdmiComponent},
-    {path: "admi-productos", component: AdminProductosComponent}
+    {path: 'galeria-tipos/:tipo',
+        loadComponent: () =>
+        import('./pages/galeriaportipos/galeriaportipos.component').then(m => m.GaleriaportiposComponent)
+    },
 
+    // necesitan token
+
+    {
+        path: "principalAdmi",
+        component: PrincipalAdmiComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admi-productos",
+        component: AdminProductosComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admi-contactos",
+        component: AdminContactosComponent,
+        canActivate: [AuthGuard]
+    } 
 ];

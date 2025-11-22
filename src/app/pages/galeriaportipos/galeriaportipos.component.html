@@ -1,0 +1,67 @@
+<section class="seccion">
+    <div class="container seccion-container">
+        <div class="seccion-content">
+            <h1 class="seccion-title">Trazos de Fuego</h1>
+            <p class="seccion-subtitle">
+            Galería de {{ tipo | titlecase }}
+            </p>
+        </div>
+        </div>
+    </section>
+    
+    <div class="galeria-wrapper">
+    
+        <!-- Estado de carga -->
+        <div class="estado" *ngIf="loading">
+        Cargando imágenes...
+        </div>
+    
+        <!-- Error -->
+        <div class="estado error" *ngIf="!loading && error">
+        {{ error }}
+        </div>
+    
+        <!-- Galería -->
+        <div class="galeria" *ngIf="!loading && !error && productos.length > 0">
+        <div class="imagen" *ngFor="let producto of productos">
+            <img
+            [src]="getImagenUrl(producto)"
+            [alt]="producto.nombre"
+            loading="lazy"
+            />
+            <!-- Si luego quieres mostrar el nombre:
+            <div class="imagen-title">
+            {{ producto.nombre | uppercase }}
+            </div>
+            -->
+        </div>
+        </div>
+    
+        <!-- Sin resultados -->
+        <div class="estado" *ngIf="!loading && !error && productos.length === 0">
+        No hay productos para mostrar en esta categoría.
+        </div>
+    
+        <!-- Paginación -->
+        <div class="paginacion" *ngIf="!loading && totalPaginas > 1">
+        <button
+            class="btn-paginacion"
+            (click)="paginaAnterior()"
+            [disabled]="pagina === 1"
+        >
+            ← Anterior
+        </button>
+    
+        <span class="paginacion-info">
+            Página {{ pagina }} de {{ totalPaginas }}
+        </span>
+    
+        <button
+            class="btn-paginacion"
+            (click)="paginaSiguiente()"
+            [disabled]="pagina === totalPaginas"
+        >
+            Siguiente →
+        </button>
+    </div>
+</div>

@@ -216,9 +216,6 @@
     color: black;
   }
 
-
-
-
   /* Media Queries */
   @media (min-width: 640px) {
     .seccion-title {
@@ -288,4 +285,9 @@
     .category .products-grid {
       grid-template-columns: repeat(4, 1fr);
     }
+  }
+
+  .product-image{
+    height: 250px;
+    width: 250px;
   }

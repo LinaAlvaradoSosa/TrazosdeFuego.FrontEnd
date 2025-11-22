@@ -1,63 +1,179 @@
 <section class="seccion">
-    <div class="container seccion-container">
-        <div class="seccion-content">
-            <h1 class="seccion-title">Administración Productos</h1>
-        </div>
+  <div class="container seccion-container">
+    <div class="seccion-content">
+      <h1 class="seccion-title">Administración Productos</h1>
     </div>
+  </div>
 </section>
 
-<div class="contenedor">     
-    <div class="buscador-container">
-        <input type="text" class="input-busqueda" placeholder="Buscar productos..." />
-    </div>
+<div class="contenedor">
+  <!-- Barra superior: Buscar + Crear -->
+  <div class="top-bar">
+    <!-- Buscador -->
+    <input
+      type="text"
+      [(ngModel)]="busqueda"
+      (ngModelChange)="onBusquedaChange()"
+      placeholder="Buscar producto por nombre..."
+      class="input-busqueda"
+    />
+
+    <!-- Botón crear -->
+    <button
+      class="agregarProducto"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#modalCrearProducto"
+    >
+      + Crear producto
+    </button>
+  </div>
+
+  <!-- Tabla de productos -->
+  <div class="tabla-responsive">
     <table>
-        <thead>
-            <tr >
-                <th class="text-center align-middle">Nombre del Producto</th>
-                <th class="text-center align-middle">Imagen</th>
-                <th class="text-center align-middle">Tipo</th>
-                <th class="text-center align-middle">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr  *ngFor="let producto of productos">
-                <td>{{producto.nombre}}</td>
-                <td>
-                    <img class="imagen" width="80"  [src]="obtenerUrlCloudinary(producto.imagen)" alt="{{producto.nombre}}"/>
-                </td>
-                <td>{{producto.tipo}}</td>
-                <td>
-                    <button (click)="deleteProduct(producto._id)" class="btn-borrar" type="button">Borrar</button>
-                </td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th class="text-center align-middle">Nombre del Producto</th>
+          <th class="text-center align-middle">Imagen</th>
+          <th class="text-center align-middle">Tipo</th>
+          <th class="text-center align-middle">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productosMostrados">
+          <td>{{ producto.nombre }}</td>
+          <td>
+            <img
+              class="imagen"
+              width="80"
+              [src]="obtenerUrlCloudinary(producto.imagen)"
+              [alt]="producto.nombre"
+            />
+          </td>
+          <td>{{ producto.tipo }}</td>
+          <td>
+            <button
+              (click)="deleteProduct(producto._id)"
+              class="btn-borrar"
+              type="button"
+            >
+              Borrar
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="productosMostrados.length === 0">
+          <td colspan="4" style="text-align:center; padding: 12px; color:#777;">
+            No se encontraron productos con ese nombre.
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <button type="button" class="btn btn-primary agregarProducto" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar un producto</button>
+  </div>
+
+  <!-- Paginación: solo si NO estoy en búsqueda -->
+  <div
+    class="paginacion"
+    *ngIf="!enBusqueda && totalPaginas > 1"
+  >
+    <button
+      type="button"
+      class="btn-paginacion"
+      (click)="paginaAnterior()"
+      [disabled]="pagina === 1"
+    >
+      ←
+    </button>
+
+    <span class="paginacion-info">
+      Página {{ pagina }} de {{ totalPaginas }}
+    </span>
+
+    <button
+      type="button"
+      class="btn-paginacion"
+      (click)="paginaSiguiente()"
+      [disabled]="pagina === totalPaginas"
+    >
+      →
+    </button>
+  </div>
 </div>
 
-<button routerLink="/principalAdmi"  class="volverTrucu" style="padding: 10px 20px; background-color: #919191; color: black; border: none; border-radius: 5px;">
-    ← Admi.PinceldeFuego
+<button
+  routerLink="/principalAdmi"
+  class="volverTrucu"
+>
+  ← Admi.TrazosdeFuego
 </button>
 
+<!-- MODAL CREAR PRODUCTO -->
+<div class="modal fade" id="modalCrearProducto" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-<!-- moda agregar -->
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Crear nuevo producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar un producto</h1>
-            </div>
-            <div class="modal-body">
-                <form (ngSubmit)="crear()" enctype="multipart/form-data"  aria-hidden="false">
-                    <input  #myInput type="text" [(ngModel)]="producto.nombre" name="nombre" placeholder="Nombre" required />
-                    <input  #myInput type="text" [(ngModel)]="producto.tipo" name="tipo" placeholder="tipos" required />
-                    <p class="tipo">accesorios,artilleria,aviacion,caballeria,comunicaciones,esculturas-militares,espro,infantería,ingenieros,inteligencia,logistica</p>
-                    <input  #myInput type="file" (change)="onFileChange($event)" />
-                    <button type="submit"  data-bs-dismiss="modal" >Crear producto</button>
-                </form>
-            </div>
-        </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data">
+          <!-- Nombre -->
+          <input
+            type="text"
+            [(ngModel)]="producto.nombre"
+            name="nombre"
+            placeholder="Nombre del producto"
+            required
+          />
+
+          <!-- Tipo como select -->
+          <select
+            [(ngModel)]="producto.tipo"
+            name="tipo"
+            required
+          >
+            <option value="" disabled>Selecciona un tipo...</option>
+            <option *ngFor="let t of tiposProducto" [value]="t">
+              {{ t }}
+            </option>
+          </select>
+
+          <p class="tipo">
+            Tipos permitidos: accesorios, artilleria, aviacion, caballeria, comunicaciones,
+            esculturas-militares, espro, infanteria, ingenieros, inteligencia, logistica
+          </p>
+
+          <!-- Archivo -->
+          <input
+            type="file"
+            (change)="onFileChange($event)"
+            required
+          />
+
+          <!-- Preview de imagen -->
+          <div *ngIf="previewUrl" class="preview-contenedor">
+            <p>Vista previa:</p>
+            <img
+              [src]="previewUrl"
+              alt="Vista previa"
+            />
+          </div>
+
+          <!-- BOTÓN CREAR -->
+          <button
+            type="button"
+            class="btn-crear"
+            (click)="crear()"
+            [disabled]="loading"
+            data-bs-dismiss="modal"
+          >
+            {{ loading ? 'Creando...' : 'Crear producto' }}
+          </button>
+        </form>
+      </div>
+
     </div>
-</div> 
-
+  </div>
+</div>

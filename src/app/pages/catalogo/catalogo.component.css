@@ -1,129 +1,165 @@
+/* Sección azul */
 .seccion {
     width: 100%;
-    padding: 3rem 0 6rem;
+    padding: 3rem 0;          /* <-- igual que “Trazos de Fuego” */
     background-color: #2C5E91;
-    color: var(--color-white);
-}
-
-.seccion-container {
-    display: grid;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.seccion-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.seccion-title {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.2;
     color: white;
 }
 
-/*  Cartas */
-.products-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 3rem 0;
-}
-.center-button {
+/* Contenedor igual que en otras páginas */
+.seccion-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
 }
 
-.product-card {
+/* Título alineado a la izquierda */
+.seccion-title {
+    font-size: 2rem;          /* <-- más pequeño y consistente */
+    font-weight: 700;
+    text-align: left;
+    margin: 0;
+}
+
+  /* ====== GRID DE PRODUCTOS ====== */
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* móvil: 1 card */
+    gap: 1.5rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    max-width: 1200px;
+  }
+  
+  /* ====== CARD ====== */
+  
+  .product-card {
     border: 1px solid var(--color-gray-300);
     border-radius: 0.5rem;
     overflow: hidden;
     transition: all 0.2s;
     background-color: var(--color-white);
-}
-
-.product-card:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
     width: 100%;
-    height: 12rem;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Imagen de la card */
+  
+  .product-image {
+    width: 100%;
+    height: 220px;
     overflow: hidden;
-}
-.product-image img {
+  }
+  
+  .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s;
-}
-.product-image img:hover {
+  }
+  
+  .product-image img:hover {
     transform: scale(1.05);
-}
-
-.product-content {
+  }
+  
+  /* Contenido */
+  
+  .product-content {
     padding: 1rem;
-}
-
-.product-title {
+  }
+  
+  .product-title {
     font-size: 1.125rem;
     color: black;
     transition: color 0.3s;
     text-decoration: none;
-}
-
-.product-title:hover {
+  }
+  
+  .product-title:hover {
     font-weight: bold;
-}
-
-.product-price {
+  }
+  
+  .product-price {
     font-size: 1rem;
     color: var(--color-secondary);
     margin-bottom: 1rem;
-}
-
-.product-footer {
+  }
+  
+  /* Footer de la card */
+  
+  .product-footer {
     padding: 0 1rem 1rem;
-}
-
-.btn-full {
+  }
+  
+  .btn-full {
     width: 100%;
     background-color: #2C5E91;
     color: white;
-}
-.btn-blue:hover{
+  }
+  
+  .btn-blue:hover {
     border-color: #2C5E91;
     background-color: white;
     color: black;
-}
-
-@media (min-width: 640px) {
+  }
+  
+  /* ====== RESPONSIVE ====== */
+  
+  /* Tablet chica: 2 cards */
+  @media (min-width: 640px) {
     .seccion-title {
-        font-size: 2.5rem;
+      font-size: 2.5rem;
     }
+  
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas */
     }
-}
-
-@media (min-width: 768px) {
+  }
+  
+  /* Tablet grande / desktop mediano */
+  @media (min-width: 768px) {
     .seccion {
-        padding: 6rem 0;
+      padding: 6rem 0;
     }
-
+  
     .seccion-container {
-        grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
-
+  
     .seccion-title {
-        font-size: 3rem;
+      font-size: 3rem;
+    }
+  
+    .product-image {
+      height: 240px;
+    }
+  }
+  
+  /* Desktop: 3 cards */
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columnas */
+    }
+  
+    .product-image {
+      height: 260px;
+    }
+    /* Responsive */
+@media (min-width: 768px) {
+    .seccion-title {
+        font-size: 2.5rem;    /* en pantallas medianas */
     }
 }
 
 @media (min-width: 1024px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .seccion-title {
+        font-size: 3rem;      /* en pantallas grandes */
     }
-}
+
+  }

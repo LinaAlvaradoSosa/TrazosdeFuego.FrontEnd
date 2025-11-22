@@ -33,60 +33,60 @@
             <!-- Product Card 1 -->
             <div class="product-card">
             <div class="product-image">
-                <a href="/productos/medallas/1">
-                <img src="/caballeria1.jpeg" alt="Medalla de Honor">
+                <a [routerLink]="['/galeria-tipos/caballeria']">
+                <img class="imagen-card" src="/caballeria1.jpeg"  alt="Medalla de Honor">
                 </a>
             </div>
             <div class="product-content">
-                <a href="/productos/medallas/1">
+                <a href="/productos/caballeria">
                 <h3 class="product-title">Ejercito Nacional Caballeria</h3>
                 </a>
                 <p class="product-price">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar.</p>
             </div>
             <div class="product-footer">
-                <button class="btn btn-blue btn-full">Ver mas</button>
+                <button class="btn btn-blue btn-full" [routerLink]="['/galeria-tipos/caballeria']">Ver mas</button>
             </div>
         </div>
 
         <!-- Product Card 2 -->
             <div class="product-card">
             <div class="product-image">
-                <a href="/productos/escudos/5">
+                <a [routerLink]="['/galeria-tipos/esculturas-militares']">
                 <img src="/esculturas9.jpeg" alt="Escudo Institucional">
                 </a>
             </div>
             <div class="product-content">
-                <a href="/productos/escudos/5">
+                <a href="/productos/esculturas-militares">
                 <h3 class="product-title">Ejercito Nacional Esculturas</h3>
                 </a>
                 <p class="product-price">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar.</p>
             </div>
             <div class="product-footer">
-                <button class="btn btn-blue btn-full">Ver mas</button>
+                <button class="btn btn-blue btn-full" [routerLink]="['/galeria-tipos/esculturas-militares']">Ver mas</button>
             </div>
             </div>
 
         <!-- Product Card 3 -->
             <div class="product-card">
             <div class="product-image">
-                <a href="/productos/medallas/3">
+                <a [routerLink]="['/galeria-tipos/inteligencia']">
                 <img src="/inteligencia2.jpeg" alt="Medalla Conmemorativa">
                 </a>
             </div>
             <div class="product-content">
-                <a href="/productos/medallas/3">
+                <a href="/productos/inteligencia">
                 <h3 class="product-title">Ejercito Nacional Inteligencia</h3>
                 </a>
                 <p class="product-price">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar.</p>
             </div>
             <div class="product-footer">
-                <button class="btn btn-blue btn-full">Ver mas</button>
+                <button class="btn btn-blue btn-full" [routerLink]="['/galeria-tipos/inteligencia']">Ver mas</button>
             </div>
             </div>
         </div>
 
         <div class="center-button">
-        <a routerLink="catalogo" href="/productos" class="btn btn-blue">Ver Todos los Productos</a>
+        <a routerLink="catalogo" href="/catalogo" class="btn btn-blue">Ver Todos los Productos</a>
         </div>
     </div>
 </section>

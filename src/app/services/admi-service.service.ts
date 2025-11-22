@@ -15,11 +15,20 @@ export class AdmiServiceService {
   }
   guardarToken(token: string) {
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem('token', token);
+      localStorage.setItem('token', token);
     }
   }
+  
   obtenerToken(): string | null {
-    return typeof window !== 'undefined' ? sessionStorage.getItem('token') : null;
+    return typeof window !== 'undefined'
+      ? localStorage.getItem('token')
+      : null;
+  }
+  
+  logout() {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
   }
   sendMessage(body: any) {
     return this.http.post(`${this.apiURL}/nuevoMensaje`, body)

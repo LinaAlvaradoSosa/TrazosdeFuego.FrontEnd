@@ -1,31 +1,65 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Producto } from '../core/Interfaces/riducto.interface';
+import { Producto, ProductosPaginados } from '../core/Interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogoService {
 
-  apiURL = "http://localhost:3000/api"
+  apiURL = 'http://localhost:3000/api';
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.apiURL}/productos`)
+  private getAuthHeaders(): HttpHeaders | undefined {
+    if (typeof window === 'undefined') return undefined;
+
+    const token = localStorage.getItem('token');
+    if (!token) return undefined;
+
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-  deleteProduct(id: string){
-    return this.http.delete(`${this.apiURL}/productos/borrarProducto/${id}`)
-  }
-  getOneProduct(id: string){
-    return this.http.get(`${this.apiURL}/productos/obtenerProducto/${id}`)
+
+  getProducts(pagina: number = 1, limite: number = 12): Observable<ProductosPaginados> {
+    const params = new HttpParams()
+      .set('pagina', pagina)
+      .set('limite', limite);
+
+    return this.http.get<ProductosPaginados>(`${this.apiURL}/productos`, { params });
   }
 
   crearProducto(formData: FormData) {
-    return this.http.post(`${this.apiURL}/productos/crear`, formData);
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${this.apiURL}/productos/crear`, formData, { headers });
   }
-  getProductosPorTipo(tipo: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiURL}/productos/obtenerProductosPorTipo/${tipo}`);
+
+  deleteProduct(id: string) {
+    const headers = this.getAuthHeaders();
+    return this.http.delete(`${this.apiURL}/productos/borrarProducto/${id}`, { headers });
   }
+
+  getOneProduct(id: string) {
+    return this.http.get(`${this.apiURL}/productos/obtenerProducto/${id}`);
+  }
+
+  getProductosPorTipo(
+    tipo: string,
+    pagina: number = 1,
+    limite: number = 12
+  ): Observable<ProductosPaginados> {
+    const params = new HttpParams()
+      .set('pagina', pagina)
+      .set('limite', limite);
+
+    return this.http.get<ProductosPaginados>(
+      `${this.apiURL}/productos/obtenerProductosPorTipo/${tipo}`,
+      { params }
+    );
+  }
+  buscarProductosPorNombre(nombre: string): Observable<Producto[]> {
+    const params = new HttpParams().set('nombre', nombre);
+    return this.http.get<Producto[]>(`${this.apiURL}/productos/obteneProductoNombre`, { params });
+  }
+  
 }

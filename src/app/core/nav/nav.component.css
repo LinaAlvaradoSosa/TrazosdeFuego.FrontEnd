@@ -2,8 +2,16 @@ header {
     background-color: white;
     border-bottom: 1px solid #e5e5e5;
     position: sticky;
+    height: 86px;
     top: 0;
     z-index: 1000;
+}
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .header-container {
     max-width: 1200px;
@@ -50,7 +58,7 @@ header {
     gap: 1rem;
 }
 .redes img {
-    height: 20px;
+    height: 28px;
     margin-right: 1rem;
     transition: transform 0.3s;
 }
@@ -64,30 +72,58 @@ header {
     cursor: pointer;
     color: black;
 }
-@media (max-width: 768px) {
-    .menu-button {
-        display: block;
+@media (max-width: 1057px) {
+    .logo {
+        display: none;
     }
-    .nav-menu {
+    .hamburger {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        color: black;
+        z-index: 1001;
+        margin-left: 5%;
+        
+    }
+    .nav-container {
         display: none;
         flex-direction: column;
-        align-items: center;
+        position: absolute;
+        top: 86px;
+        left: 0;
+        background-color: rgba(242, 242, 242, 0.9);
         width: 100%;
-        background: white;
-        padding: 1rem 0;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
-    .nav-menu.active {
+    .nav-container.active {
         display: flex;
     }
-    .header-actions {
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
-        flex-wrap: wrap;
+    .nav-links a {
+        display: flex;
+        flex-direction: column !important;
+        gap: 1rem;
+        text-decoration: none;
+        color: black;
+        transition: all 0.2s ease;
+    }   
+    .nav-links a:hover {
+        font-weight: bold; 
+        color: black;
+        transform: translateX(4px); 
+    }
+    .nav-menu {
+        display: flex;
+        flex-direction: column; /* 👈 Cambia a columna */
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
     }
     .redes {
         display: flex;
-        justify-content: center;
-        width: 100%;
+        justify-content: flex-end;
+        margin-left: auto;
     }
 }
+
