@@ -1,82 +1,177 @@
+/* Sección azul unificada */
 .seccion {
-    width: 100%;
-    padding: 3rem 0 6rem;
-    background-color: #2C5E91;
-    color: var(--color-white);
+  width: 100%;
+  padding: 4rem 0;                 /* altura consistente */
+  background-color: #2C5E91;       /* azul institucional */
+  color: white;
 }
 
 .seccion-container {
-    display: grid;
-    gap: 1.5rem;
-    align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;               /* margen lateral responsive */
 }
 
 .seccion-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
+/* Título principal */
 .seccion-title {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: white;
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  text-align: left;                /* ← TÍTULOS A LA IZQUIERDA */
 }
-h2{
-    margin: 4%;
+
+/* Subtítulo (solo para la galería) */
+.seccion-subtitle {
+  font-size: 2rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin: 0;
+  text-align: left;                /* consistente con el título */
 }
-.titulo-galeria {
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seccion {
+      padding: 3rem 0;
+  }
+  .seccion-title {
+      font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seccion {
+      padding: 2.5rem 0;
+  }
+  .seccion-title {
+      font-size: 1.7rem;
+  }
+  .seccion-subtitle {
+      font-size: 1.1rem;
+  }
+}
+
+  /* Wrapper principal de la galería */
+  .galeria-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto 3rem;
+    padding: 0 1rem;
+  }
+  
+  /* Mensajes de estado (cargando / error / vacío) */
+  .estado {
     text-align: center;
-    font-size: 2rem;
-    margin-top: 2rem;
-    color: #2C5E91; /* color institucional */
-}
-
-.galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    padding: 1.5rem;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  
+  .estado.error {
+    color: #9E3329;
+    font-weight: 600;
+  }
+  
+  /* 🎯 GALERÍA RESPONSIVE con GRID */
+  /* Por defecto: 1 foto (celulares) */
+  .galeria {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding: 2rem;
-}
-
-.imagen {
+    justify-items: center; /* centra las cards dentro de cada columna */
+    padding: 1.5rem 0;
+  }
+  
+  /* Tarjeta de imagen */
+  .imagen {
     background-color: #f9f9f9;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: calc(100% / 2 - 2rem);
-    max-width: 300px;
+    width: 100%;
+    max-width: 260px;
     transition: transform 0.3s ease;
     text-align: center;
-}
-
-.imagen img {
+  }
+  
+  .imagen img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.imagen p {
-    padding: 0.5rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.imagen:hover {
+  }
+  
+  .imagen:hover {
     transform: scale(1.03);
-}
-  /* Responsive para tablets */
-@media (min-width: 600px) {
-    .imagen {
-        width: calc(100% / 3 - 2rem);
+  }
+  
+  /* Texto opcional debajo de la imagen */
+  .imagen-title {
+    padding: 0.5rem 0.75rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  /* 📱 >= 600px → 2 columnas */
+  @media (min-width: 600px) {
+    .galeria {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-}
-
-  /* Responsive para pantallas grandes */
-@media (min-width: 900px) {
-    .imagen {
-        width: calc(100% / 4 - 2rem);
+  }
+  
+  /* 💻 >= 900px → 3 columnas */
+  @media (min-width: 900px) {
+    .galeria {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-}
+  }
+  
+  /* 🖥️ >= 1200px → 4 columnas */
+  @media (min-width: 1200px) {
+    .galeria {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  
+  /* Paginación */
+  .paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn-paginacion {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2C5E91;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.9rem;
+  }
+  
+  .btn-paginacion:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .btn-paginacion:hover:not(:disabled) {
+    background-color: #174A71;
+  }
+  
+  .paginacion-info {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  

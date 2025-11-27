@@ -1,47 +1,237 @@
 .seccion {
     width: 100%;
-    padding: 3rem 0 6rem;
+    padding: 3rem 0;
     background-color: #2C5E91;
-    color: var(--color-white);
-}
-
-.seccion-container {
-    display: grid;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.seccion-content {
+    color: white;
+  }
+  
+  .seccion-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .seccion-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-}
-
-.seccion-title {
+    gap: 0.5rem;
+  }
+  
+  .seccion-title {
     font-size: 2rem;
     font-weight: 700;
-    line-height: 1.2;
-    color: white;
-}
-
-.contenedor{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 4% 7% 4% 7%;
-}
-.btn {
+    margin: 0;
+  }
+  
+  /* Contenedor principal */
+  
+  .contenedor {
+    width: 90%;
+    max-width: 1000px;
+    margin: 32px auto 40px;
+  }
+  
+  /* Estados */
+  
+  .loading {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .empty-state {
+    text-align: center;
+    font-size: 1rem;
+    color: #777;
+    margin-top: 16px;
+  }
+  
+  /* Tabla */
+  
+  .tabla-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .tabla-mensajes {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.18);
+  }
+  
+  .tabla-mensajes thead {
+    background-color: #BFCEE0;
+  }
+  
+  .tabla-mensajes th,
+  .tabla-mensajes td {
+    padding: 12px 10px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .tabla-mensajes th {
+    font-weight: 600;
+  }
+  
+  .tabla-mensajes tbody tr:hover {
+    background-color: #f7f9fc;
+  }
+  
+  .mensaje-col {
+    max-width: 320px;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  /* Botones */
+  
+  .btn-borrar {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
     background-color: #F58C35;
     color: white;
-}
-.btn:hover {
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    transition: 0.2s;
+  }
+  
+  .btn-borrar:hover {
     background-color: #FAAB32;
     color: black;
+    transform: scale(1.03);
+  }
+  
+  .volverTrucu {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #919191;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+  
+  .volverTrucu:hover {
+    background-color: #7c7c7c;
+    transform: scale(1.03);
+  }
 
-}
-.volverTrucu{
-    margin: 20px
-}
-.volverTrucu:hover {
-    transform: scale(1.05);
-}
+  /* ====== PAGINACIÓN ====== */
+  
+  .paginacion {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  
+  .btn-paginacion {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  
+  .btn-paginacion:hover:not(:disabled) {
+    background: #e2e2e2;
+    transform: translateY(-1px);
+  }
+  
+  .btn-paginacion:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  
+  .paginacion-info {
+    font-weight: 500;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  
+  @media (max-width: 768px) {
+    .seccion-title {
+      font-size: 1.6rem;
+    }
+  
+    .tabla-mensajes thead {
+      display: none;
+    }
+  
+    .tabla-mensajes,
+    .tabla-mensajes tbody,
+    .tabla-mensajes tr,
+    .tabla-mensajes td {
+      display: block;
+      width: 100%;
+    }
+  
+    .tabla-mensajes tr {
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #fff;
+    }
+  
+    .tabla-mensajes td {
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding: 10px 10px 10px 45%;
+      font-size: 13px;
+    }
+  
+    .tabla-mensajes td:last-child {
+      border-bottom: none;
+    }
+  
+    .tabla-mensajes td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-weight: 600;
+      font-size: 12px;
+      color: #555;
+    }
+  
+    .mensaje-col {
+      max-width: 100%;
+    }
+  
+    .btn-borrar {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .volverTrucu {
+      width: 96%;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contenedor {
+      width: 94%;
+      margin-top: 24px;
+    }
+  
+    .seccion-title {
+      font-size: 1.4rem;
+    }
+  }
+  

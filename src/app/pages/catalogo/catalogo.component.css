@@ -1,26 +1,62 @@
-/* Sección azul */
+/* Sección azul unificada */
 .seccion {
-    width: 100%;
-    padding: 3rem 0;          /* <-- igual que “Trazos de Fuego” */
-    background-color: #2C5E91;
-    color: white;
+  width: 100%;
+  padding: 20px 0;                 /* altura consistente */
+  background-color: #2C5E91;       /* azul institucional */
+  color: white;
 }
 
-/* Contenedor igual que en otras páginas */
 .seccion-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    padding: 0 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8px;               /* margen lateral responsive */
 }
 
-/* Título alineado a la izquierda */
+.seccion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Título principal */
 .seccion-title {
-    font-size: 2rem;          /* <-- más pequeño y consistente */
-    font-weight: 700;
-    text-align: left;
-    margin: 0;
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  text-align: left;                /* ← TÍTULOS A LA IZQUIERDA */
+}
+
+/* Subtítulo (solo para la galería) */
+.seccion-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  text-align: left;                /* consistente con el título */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seccion {
+      padding: 3rem 0;
+  }
+  .seccion-title {
+      font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seccion {
+      padding: 2.5rem 0;
+  }
+  .seccion-title {
+      font-size: 1.7rem;
+  }
+  .seccion-subtitle {
+      font-size: 1.1rem;
+  }
 }
 
   /* ====== GRID DE PRODUCTOS ====== */
@@ -150,16 +186,17 @@
     .product-image {
       height: 260px;
     }
-    /* Responsive */
+        /* Responsive */
 @media (min-width: 768px) {
-    .seccion-title {
-        font-size: 2.5rem;    /* en pantallas medianas */
-    }
+  .seccion-title {
+      font-size: 2.5rem;    /* en pantallas medianas */
+  }
 }
 
 @media (min-width: 1024px) {
-    .seccion-title {
-        font-size: 3rem;      /* en pantallas grandes */
-    }
-
+  .seccion-title {
+      font-size: 3rem;      /* en pantallas grandes */
   }
+
+}
+}

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,13 +6,22 @@ import { Injectable } from '@angular/core';
 })
 export class AdmiServiceService {
   
-  apiURL: string = "http://localhost:3000/api"
+  apiURL: string = "http://localhost:3000/api";
 
   constructor(private http: HttpClient) { }
 
-  login(body: any){
-    return this.http.post(`${this.apiURL}/login`, body)
+  // helper para headers con token
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.obtenerToken();
+    return new HttpHeaders({
+      Authorization: token ? `Bearer ${token}` : ''
+    });
   }
+
+  login(body: any) {
+    return this.http.post(`${this.apiURL}/login`, body);
+  }
+
   guardarToken(token: string) {
     if (typeof window !== 'undefined') {
       localStorage.setItem('token', token);
@@ -30,13 +39,26 @@ export class AdmiServiceService {
       localStorage.removeItem('token');
     }
   }
+
+  // público, sin token
   sendMessage(body: any) {
-    return this.http.post(`${this.apiURL}/nuevoMensaje`, body)
+    return this.http.post(`${this.apiURL}/nuevoMensaje`, body);
   }
-  getMessages(){
-    return this.http.get(`${this.apiURL}/mostrarMensajes`)
-  }
+
+  // protegido, con token
+  getMessages(pagina: number, limite: number) {
+    const headers = this.getAuthHeaders();
+  
+    return this.http.get(
+      `${this.apiURL}/mostrarMensajes?pagina=${pagina}&limite=${limite}`,
+      { headers }
+    );
+  }  
+
+  // protegido, con token
   deleteMessage(id: string) {
-    return this.http.delete(`${this.apiURL}/borrarMensaje/${id}`)
+    const headers = this.getAuthHeaders();
+    return this.http.delete(`${this.apiURL}/borrarMensaje/${id}`, { headers });
   }
 }
+

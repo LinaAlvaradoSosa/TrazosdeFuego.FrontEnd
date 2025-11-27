@@ -24,6 +24,7 @@ export const routes: Routes = [
     // necesitan token
 
     {
+        // no sirve
         path: "principalAdmi",
         component: PrincipalAdmiComponent,
         canActivate: [AuthGuard]
