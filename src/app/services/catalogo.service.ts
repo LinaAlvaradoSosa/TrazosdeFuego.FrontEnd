@@ -8,7 +8,7 @@ import { Producto, ProductosPaginados } from '../core/Interfaces/producto.interf
 })
 export class CatalogoService {
 
-  apiURL = 'http://localhost:3000/api';
+  apiURL = 'https://trazosdefuego-backend.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 

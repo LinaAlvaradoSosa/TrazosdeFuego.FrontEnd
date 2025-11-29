@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AdmiServiceService {
   
-  apiURL: string = "http://localhost:3000/api";
+  apiURL: string ="https://trazosdefuego-backend.onrender.com/api";
 
   constructor(private http: HttpClient) { }
 
